@@ -26,6 +26,7 @@ import { DiscussioncandidatComponent } from './discussioncandidat/discussioncand
 import { TestComponent } from './test/test.component';
 import { AdminComponent } from './admin/admin.component';
 import { HeaderComponent } from './layout/header/header.component';
+import { PlusinfoComponent } from './plusinfo/plusinfo.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { HeaderComponent } from './layout/header/header.component';
     TestComponent,
     AdminComponent,
     HeaderComponent,
+    PlusinfoComponent,
   
   ],
   imports: [

@@ -2,7 +2,15 @@ body{
     font:1.2em normal Arial,sans-serif;
     color:#34495E;
   }
+  .image_container {
+    margin-left: 50%; /* Espacement à gauche de l'image */
+    margin-top: auto;
+  }
   
+  img {
+    max-width: 190px; /* Largeur maximale de l'image */
+    height: auto; /* Hauteur ajustée automatiquement */
+  }
   h1{
     text-align:center;
     text-transform:uppercase;

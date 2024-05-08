@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SerOffreService } from '../services/seroffre.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
   offreForm!: FormGroup; 
   offres: any[] = [];
 
-  constructor(private offreService: SerOffreService, private formBuilder: FormBuilder) { }
+  constructor(private offreService: SerOffreService, private formBuilder: FormBuilder, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -72,7 +72,11 @@ export class HomeComponent implements OnInit {
   }
 
 
-
+plusinfo() {
+  this._snackBar.open('Vous Devez Se connecter dabord .', 'Fermer', {
+    duration: 6000, // Durée d'affichage du message (en millisecondes)
+  });
+}
 
 
 }
