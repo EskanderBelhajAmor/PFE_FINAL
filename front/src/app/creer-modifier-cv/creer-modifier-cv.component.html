@@ -1,0 +1,421 @@
+
+
+<div *ngIf="isLoggedIn; else loggedOut">
+  &nbsp; 
+  <!-- Button trigger modal -->
+  <div class="add-cv-btn-container">
+    <button type="button" class="bttt" data-toggle="modal" data-target="#exampleModal">
+      Ajouter un CV
+    </button>
+  </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Créer un CV</h5>
+         
+      
+        </div>
+        <div class="modal-body">
+        
+          <img [src]="'http://127.0.0.1:3000/getimage/' + user.image" >
+  <form [formGroup]="cvForm" (ngSubmit)="onSubmitForm()">
+  
+  
+    <div>
+     
+      <input type="text" id="Cin" formControlName="Cin" hidden>
+  
+    </div>
+    <div>
+      <label for="nom">Nom :</label>
+      <input type="text" id="nom" formControlName="nom">
+  
+    </div>
+    <div>
+      <label for="prenom">Prenom :</label>
+      <input type="text" id="prenom" formControlName="prenom">
+    </div>
+    <div>
+      <label for="profile">Profile :</label>
+      <input type="text" id="profile" formControlName="profile">
+  
+    </div>
+    <div>
+      <label for="description">Description :</label>
+      <input type="text" id="description" formControlName="description">
+    </div>
+  
+  
+  
+    <div>
+      <label for="telephone">Téléphone :</label>
+      <input type="text" id="telephone" formControlName="telephone">
+      <div *ngIf="cvForm.get('telephone')?.errors?.['required']" class="error-message">
+        Téléphone est requis.
+      </div>
+    </div>
+  
+  
+  
+  
+  
+    <div>
+      <label for="Email">Email :</label>
+      <input type="email" id="Email" formControlName="Email">
+      <div *ngIf="cvForm.get('Email')?.errors?.['required']" class="error-message">
+        Email est requis.
+      </div>
+      <div *ngIf="cvForm.get('Email')?.errors?.['email']" class="error-message">
+        Email doit être une adresse email valide.
+      </div>
+    </div>
+  
+  
+  
+  
+  
+  
+    <div>
+     
+      <input type="text" id="iduser" formControlName="iduser" hidden>
+  
+    </div>
+  
+  
+  
+  
+  
+    <div *ngIf="experiencesArray">
+    <div formArrayName="experiences">
+        <div *ngFor="let experience of experiencesArray?.controls; let i = index" [formGroupName]="i">
+          <div>
+            <label for="experienceTitle">Titre de l'expérience :</label>
+            <input type="text" id="experienceTitle" formControlName="title">
+          </div>
+  
+  
+          <div>
+            <label for="experienceDescription">Description :</label>
+            <textarea id="experienceDescription" formControlName="description"></textarea>
+          </div>
+          <!-- Ajoutez d'autres champs pour les détails de l'expérience ici -->
+          <div>
+            <label for="experienceStartDate">Date de début :</label>
+            <input type="date" id="experienceStartDate" formControlName="start_date">
+          </div>
+          <div>
+            <label for="experienceEndDate">Date de fin :</label>
+        <input type="date" id="experienceEndDate" formControlName="end_date">
+        </div>
+        <button type="button" (click)="removeExperience(i)">Supprimer</button>
+      </div>
+      <button type="button" (click)="addExperience()">Ajouter Experience</button>
+    </div>
+  
+  </div>
+  
+  
+  
+  
+      
+      <div *ngIf="formationsArray">
+        <div formArrayName="formations">
+          <div *ngFor="let formationGroup of formationsArray.controls; let i = index" [formGroupName]="i">
+            <div>
+              <label for="formationTitle">Titre de la formation :</label>
+              <input type="text" id="formationTitle" formControlName="title">
+            </div>
+            <div>
+              <label for="formationInstitution">Institution :</label>
+              <input type="text" id="formationInstitution" formControlName="institution">
+            </div>
+            <!-- Ajoutez d'autres champs pour les détails de la formation -->
+            <div>
+                <label for="formationStartDate">Date de début :</label>
+                <input type="date" id="formationStartDate" formControlName="start_date">
+              </div>
+              <div>
+                <label for="formationEndDate">Date de fin :</label>
+                <input type="date" id="formationEndDate" formControlName="end_date">
+              </div>
+            <button type="button" (click)="removeFormation(i)">Supprimer</button>
+          </div>
+          <button type="button" (click)="addFormation()">Ajouter Formation</button>
+        </div>
+      </div>
+      
+  
+  
+  
+  
+            
+      <div *ngIf="competencesArray">
+        <div formArrayName="competences">
+          <div *ngFor="let competenceGroup of competencesArray.controls; let i = index" [formGroupName]="i">
+            <div>
+              <label for="competenceTitle">Titre de la competence :</label>
+              <input type="text" id="competenceTitle" formControlName="title">
+            </div>
+            
+            <button type="button" (click)="removeCompetence(i)">Supprimer</button>
+          </div>
+          <button type="button" (click)="addCompetence()">Ajouter Competence</button>
+        </div>
+      </div>
+  
+  
+  
+  
+  
+            
+      <div *ngIf="certificationsArray">
+        <div formArrayName="certifications">
+          <div *ngFor="let certificationGroup of certificationsArray.controls; let i = index" [formGroupName]="i">
+            <div>
+              <label for="certificationTitle">Titre de la certification :</label>
+              <input type="text" id="certificationTitle" formControlName="title">
+            </div>
+            
+            <button type="button" (click)="removeCertification(i)">Supprimer</button>
+          </div>
+          <button type="button" (click)="addCertification()">Ajouter Certification</button>
+        </div>
+      </div>
+  
+  
+  
+  
+  
+  
+  
+            
+      <div *ngIf="languesArray">
+        <div formArrayName="langues">
+          <div *ngFor="let langueGroup of languesArray.controls; let i = index" [formGroupName]="i">
+            <div>
+              <label for="langueTitle">Titre de la langue :</label>
+              <input type="text" id="langueTitle" formControlName="title">
+            </div>
+            
+            <button type="button" (click)="removeLangue(i)">Supprimer</button>
+          </div>
+          <button type="button" (click)="addLangue()">Ajouter langue</button>
+        </div>
+      </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+            
+      <div *ngIf="qualitesArray">
+        <div formArrayName="qualites">
+          <div *ngFor="let qualiteGroup of qualitesArray.controls; let i = index" [formGroupName]="i">
+            <div>
+              <label for="qualiteTitle">Titre de la qualite :</label>
+              <input type="text" id="qualiteTitle" formControlName="title">
+            </div>
+            
+            <button type="button" (click)="removeQualite(i)">Supprimer</button>
+          </div>
+          <button type="button" (click)="addQualite()">Ajouter qualite</button>
+        </div>
+      </div>
+      <mat-progress-bar mode="determinate" [value]="progressValue" [ngClass]="getProgressBarClass()" class="progress-bar"></mat-progress-bar>
+      <div class="progress-label">{{ this.progressValue }}%</div>
+      
+      <div class="button-container"><button type="submit">Enregistrer</button></div>
+      
+  </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">X</button>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="cv-container" >
+    <div class="row row-cols-1 row-cols-md-3 g-4 cv-list">
+    <div *ngFor="let cv of cvs">
+      <div class="col cv-card cv-card-stylish">
+        <div class="card h-auto" id="cv-container">
+          <div class="card-header d-flex align-items-center">
+            <img [src]="'http://127.0.0.1:3000/getimage/' + cv.image" alt="Photo" class="cv-photo">
+            <div class="cv-info ml-3">
+              <h2 class="cv-name mb-0">{{ cv.prenom }} {{ cv.nom }}</h2>
+              <p class="cv-contact">
+                <span class="cv-email">{{ cv.email }}</span>
+                <span class="cv-phone">{{ cv.telephone }}</span>
+              </p>
+              <p class="cv-description">{{ cv.description }}</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <h3 class="section-title">Formations</h3>
+            <ul class="cv-list-item list-unstyled">
+              <li *ngFor="let formation of cv.formations">
+                <strong>{{ formation.title }} </strong> - {{ formation.institution }} <span class="formation-dates">{{ formation.start_date  }} à  {{ formation.end_date  }}</span>
+              </li>
+            </ul>
+            <h3 class="section-title">Expériences</h3>
+            <ul class="cv-list-item list-unstyled">
+              <li *ngFor="let experience of cv.experiences">
+                <strong>{{ experience.title }} </strong> - {{ experience.institution }} <span class="experience-dates">{{ experience.start_date  }}  à  {{ experience.end_date  }}</span>
+              </li>
+            </ul>
+  
+            <h3 class="section-title">Compétences</h3>
+            <ul class="cv-list-item list-unstyled">
+              <li *ngFor="let competence of cv.competences">
+                -{{ competence.title }} 
+              </li>
+            </ul>
+  
+            <h3 class="section-title">Certifications</h3>
+            <ul class="cv-list-item list-unstyled">
+              <li *ngFor="let certification of cv.certifications">
+                -{{ certification.title }} 
+              </li>
+            </ul>
+  
+            <h3 class="section-title">Langues</h3>
+            <ul class="cv-list-item list-unstyled">
+              <li *ngFor="let langue of cv.langues">
+                -{{ langue.title }} 
+              </li>
+            </ul>
+  
+            <h3 class="section-title">Qualités</h3>
+            <ul class="cv-list-item list-unstyled">
+              <li *ngFor="let qualite of cv.qualites">
+                -{{ qualite.title }} 
+              </li>
+            </ul>
+            <!-- Ajoutez d'autres sections pour les compétences, certifications, langues, etc. -->
+          </div>
+        </div>
+        <button (click)="printCV(cv)" class="btn btn-primary">Imprimer</button>
+      </div>
+     
+    </div>
+  </div>
+  </div>
+
+  <div class="image_container" ><img src="https://img.freepik.com/free-vector/online-page-concept-illustration_114360-4141.jpg?t=st=1715029398~exp=1715032998~hmac=385a06426eebea15af3891c6b46848274c169c019f5699e068262519db0b9ac0&w=740" ></div>
+
+</div>
+
+
+
+
+
+
+
+
+<ng-template #loggedOut>
+
+  <div class="main_wrapper">
+      <div class="main">
+        <div class="antenna">
+          <div class="antenna_shadow"></div>
+          <div class="a1"></div>
+          <div class="a1d"></div>
+          <div class="a2"></div>
+          <div class="a2d"></div>
+          <div class="a_base"></div>
+        </div>
+        <div class="tv">
+          <div class="cruve">
+            <svg
+              xml:space="preserve"
+              viewBox="0 0 189.929 189.929"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              xmlns="http://www.w3.org/2000/svg"
+              version="1.1"
+              class="curve_svg"
+            >
+              <path
+                d="M70.343,70.343c-30.554,30.553-44.806,72.7-39.102,115.635l-29.738,3.951C-5.442,137.659,11.917,86.34,49.129,49.13
+            C86.34,11.918,137.664-5.445,189.928,1.502l-3.95,29.738C143.041,25.54,100.895,39.789,70.343,70.343z"
+              ></path>
+            </svg>
+          </div>
+          <div class="display_div">
+            <div class="screen_out">
+              <div class="screen_out1">
+                <div class="screen">
+                  <span class="notfound_text"> NOT FOUND</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="lines">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+          </div>
+          <div class="buttons_div">
+            <div class="b1"><div></div></div>
+            <div class="b2"></div>
+            <div class="speakers">
+              <div class="g1">
+                <div class="g11"></div>
+                <div class="g12"></div>
+                <div class="g13"></div>
+              </div>
+              <div class="g"></div>
+              <div class="g"></div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="base1"></div>
+          <div class="base2"></div>
+          <div class="base3"></div>
+        </div>
+      </div>
+      <div class="text_404">
+        <div class="text_4041">4</div>
+        <div class="text_4042">0</div>
+        <div class="text_4043">4</div>
+      </div>
+    </div>
+</ng-template>
+
+
+
+<footer>
+  <div class="footerContainer">
+      <div class="socialIcons">
+          <a href=""><i class="fa-brands fa-facebook"></i></a>
+          <a href=""><i class="fa-brands fa-instagram"></i></a>
+          <a href=""><i class="fa-brands fa-twitter"></i></a>
+          <a href=""><i class="fa-brands fa-google-plus"></i></a>
+          <a href=""><i class="fa-brands fa-youtube"></i></a>
+      </div>
+      <div class="footerNav">
+        <ul>
+          <li><a href="https://www.medianet.tn/fr/">Accueil</a></li>
+          <li><a href="https://www.medianet.tn/fr/">Actualités</a></li>
+          <li><a href="https://www.medianet.tn/fr/">À propos</a></li>
+          <li><a href="https://www.medianet.tn/fr/">Contactez-nous</a></li>
+          <li><a href="https://www.medianet.tn/fr/">Notre équipe</a></li>
+      </ul> 
+      </div>
+      
+  </div>
+  <div class="footerBottom">
+      <p>Copyright &copy;2024; Designée par <span class="designer">Eskander Belhaj amor</span></p>
+  </div>
+</footer>

@@ -1,0 +1,225 @@
+<div *ngIf="isLoggedIn; else loggedOut">
+  
+  <div class="main_wrapper">
+    <div class="main">
+      <div class="antenna">
+        <div class="antenna_shadow"></div>
+        <div class="a1"></div>
+        <div class="a1d"></div>
+        <div class="a2"></div>
+        <div class="a2d"></div>
+        <div class="a_base"></div>
+      </div>
+      <div class="tv">
+        <div class="cruve">
+          <svg
+            xml:space="preserve"
+            viewBox="0 0 189.929 189.929"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlns="http://www.w3.org/2000/svg"
+            version="1.1"
+            class="curve_svg"
+          >
+            <path
+              d="M70.343,70.343c-30.554,30.553-44.806,72.7-39.102,115.635l-29.738,3.951C-5.442,137.659,11.917,86.34,49.129,49.13
+          C86.34,11.918,137.664-5.445,189.928,1.502l-3.95,29.738C143.041,25.54,100.895,39.789,70.343,70.343z"
+            ></path>
+          </svg>
+        </div>
+        <div class="display_div">
+          <div class="screen_out">
+            <div class="screen_out1">
+              <div class="screen">
+                <span class="notfound_text"> NOT FOUND</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="lines">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+        </div>
+        <div class="buttons_div">
+          <div class="b1"><div></div></div>
+          <div class="b2"></div>
+          <div class="speakers">
+            <div class="g1">
+              <div class="g11"></div>
+              <div class="g12"></div>
+              <div class="g13"></div>
+            </div>
+            <div class="g"></div>
+            <div class="g"></div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="base1"></div>
+        <div class="base2"></div>
+        <div class="base3"></div>
+      </div>
+    </div>
+    <div class="text_404">
+      <div class="text_4041">4</div>
+      <div class="text_4042">0</div>
+      <div class="text_4043">4</div>
+    </div>
+  </div>
+  
+  </div>
+
+  <ng-template #loggedOut>
+
+<form class="form_main" action="" #userDataForm="ngForm" (ngSubmit)="register()">
+  <p class="heading">S'inscrire</p>
+  <div class="row">
+    <div class="col">
+      <div class="inputContainer">
+        <svg viewBox="0 0 16 16" fill="#2e2e2e" height="16" width="16" xmlns="http://www.w3.org/2000/svg" class="inputIcon">
+
+          <path d="M1.226 10.88H0l2.056-6.26h1.42l2.047 6.26h-1.29l-.48-1.61H1.707l-.48 1.61ZM2.76 5.818h-.054l-.75 2.532H3.51zm3.217 5.062V4.62h2.56c1.09 0 1.808.582 1.808 1.54 0 .762-.444 1.22-1.05 1.372v.055c.736.074 1.365.587 1.365 1.528 0 1.119-.89 1.766-2.133 1.766zM7.18 5.55v1.675h.8c.812 0 1.171-.308 1.171-.853 0-.51-.328-.822-.898-.822zm0 2.537V9.95h.903c.951 0 1.342-.312 1.342-.909 0-.591-.382-.954-1.095-.954zm5.089-.711v.775c0 1.156.49 1.803 1.347 1.803.705 0 1.163-.454 1.212-1.096H16v.12C15.942 10.173 14.95 11 13.607 11c-1.648 0-2.573-1.073-2.573-2.849v-.78c0-1.775.934-2.871 2.573-2.871 1.347 0 2.34.849 2.393 2.087v.115h-1.172c-.05-.665-.516-1.156-1.212-1.156-.849 0-1.347.67-1.347 1.83"></path>
+        </svg>
+        <input placeholder="Nom : " id="nom" class="inputField" type="text" [(ngModel)]="user.nom" required pattern="[A-Za-z]+" minlength="2" maxlength="50" name="nom">
+        <div *ngIf="userDataForm.controls['nom'].invalid && (userDataForm.controls['nom'].dirty || userDataForm.controls['nom'].touched)">
+          <div *ngIf="userDataForm.controls['nom'].errors?.['required']">Le nom est requis.</div>
+          <div *ngIf="userDataForm.controls['nom'].errors?.['pattern']">Le nom doit être composé de lettres uniquement.</div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="inputContainer">
+        <svg viewBox="0 0 16 16" fill="#2e2e2e" height="16" width="16" xmlns="http://www.w3.org/2000/svg" class="inputIcon">
+          <path d="M2.204 11.078c.767 0 1.201-.356 1.406-.737h.059V11h1.216V7.519c0-1.314-.947-1.783-2.11-1.783C1.355 5.736.75 6.42.69 7.27h1.216c.064-.323.313-.552.84-.552s.864.249.864.771v.464H2.346C1.145 7.953.5 8.568.5 9.496c0 .977.693 1.582 1.704 1.582m.42-.947c-.44 0-.845-.235-.845-.718 0-.395.269-.684.84-.684h.991v.538c0 .503-.444.864-.986.864m5.593.937c1.216 0 1.948-.869 1.948-2.31v-.702c0-1.44-.727-2.305-1.929-2.305-.742 0-1.328.347-1.499.889h-.063V3.983h-1.29V11h1.27v-.791h.064c.21.532.776.86 1.499.86Zm-.43-1.025c-.66 0-1.113-.518-1.113-1.28V8.12c0-.825.42-1.343 1.098-1.343.684 0 1.075.518 1.075 1.416v.45c0 .888-.386 1.401-1.06 1.401Zm2.834-1.328c0 1.47.87 2.378 2.305 2.378 1.416 0 2.139-.777 2.158-1.763h-1.186c-.06.425-.313.732-.933.732-.66 0-1.05-.512-1.05-1.352v-.625c0-.81.371-1.328 1.045-1.328.635 0 .879.425.918.776h1.187c-.02-.986-.787-1.806-2.14-1.806-1.41 0-2.304.918-2.304 2.338z"></path>
+        </svg>
+        <input placeholder="Prénom : " id="prenom" class="inputField" type="text" name="prenom" [(ngModel)]="user.prenom" required pattern="[A-Za-z]+" minlength="2" maxlength="50">
+        <div *ngIf="userDataForm.controls['prenom'].invalid && (userDataForm.controls['prenom'].dirty || userDataForm.controls['prenom'].touched)">
+          <div *ngIf="userDataForm.controls['prenom'].errors?.['required']">Le prénom est requis.</div>
+          <div *ngIf="userDataForm.controls['prenom'].errors?.['pattern']">Le prénom doit être composé de lettres uniquement.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="inputContainer">
+        <!-- Input for CIN -->
+        <svg viewBox="0 0 16 16" fill="#2e2e2e" height="16" width="16" xmlns="http://www.w3.org/2000/svg" class="inputIcon">
+          <path d="M2.873 11.297V4.142H1.699L0 5.379v1.137l1.64-1.18h.06v5.961zm3.213-5.09v-.063c0-.618.44-1.169 1.196-1.169.676 0 1.174.44 1.174 1.106 0 .624-.42 1.101-.807 1.526L4.99 10.553v.744h4.78v-.99H6.643v-.069L8.41 8.252c.65-.724 1.237-1.332 1.237-2.27C9.646 4.849 8.723 4 7.308 4c-1.573 0-2.36 1.064-2.36 2.15v.057zm6.559 1.883h.786c.823 0 1.374.481 1.379 1.179.01.707-.55 1.216-1.421 1.21-.77-.005-1.326-.419-1.379-.953h-1.095c.042 1.053.938 1.918 2.464 1.918 1.478 0 2.642-.839 2.62-2.144-.02-1.143-.922-1.651-1.551-1.714v-.063c.535-.09 1.347-.66 1.326-1.678-.026-1.053-.933-1.855-2.359-1.845-1.5.005-2.317.88-2.348 1.898h1.116c.032-.498.498-.944 1.206-.944.703 0 1.206.435 1.206 1.07.005.64-.504 1.106-1.2 1.106h-.75z"></path>
+          </svg>
+        <input placeholder="CIN : " id="cin" class="inputField" type="text" name="cin" [(ngModel)]="user.cin" required pattern="[0-9]{8}" minlength="8" maxlength="8">
+        <div *ngIf="userDataForm.controls['cin'].invalid && (userDataForm.controls['cin'].dirty || userDataForm.controls['cin'].touched)">
+          <div *ngIf="userDataForm.controls['cin'].errors?.['required']">Le CIN est requis.</div>
+          <div *ngIf="userDataForm.controls['cin'].errors?.['pattern']">Le CIN doit être composé de 8 chiffres.</div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="inputContainer">
+        <!-- Input for Email -->
+        <svg viewBox="0 0 16 16" fill="#2e2e2e" height="16" width="16" xmlns="http://www.w3.org/2000/svg" class="inputIcon">
+          <path d="M13.106 7.222c0-2.967-2.249-5.032-5.482-5.032-3.35 0-5.646 2.318-5.646 5.702 0 3.493 2.235 5.708 5.762 5.708.862 0 1.689-.123 2.304-.335v-.862c-.43.199-1.354.328-2.29.328-2.926 0-4.813-1.88-4.813-4.798 0-2.844 1.921-4.881 4.594-4.881 2.735 0 4.608 1.688 4.608 4.156 0 1.682-.554 2.769-1.416 2.769-.492 0-.772-.28-.772-.76V5.206H8.923v.834h-.11c-.266-.595-.881-.964-1.6-.964-1.4 0-2.378 1.162-2.378 2.823 0 1.737.957 2.906 2.379 2.906.8 0 1.415-.39 1.709-1.087h.11c.081.67.703 1.148 1.503 1.148 1.572 0 2.57-1.415 2.57-3.643zm-7.177.704c0-1.197.54-1.907 1.456-1.907.93 0 1.524.738 1.524 1.907S8.308 9.84 7.371 9.84c-.895 0-1.442-.725-1.442-1.914z"></path>
+          </svg>
+        <input placeholder="Email :"  class="inputField" type="text" id="email" name="email" [(ngModel)]="user.email" required >
+        <div *ngIf="userDataForm.controls['email'].invalid && (userDataForm.controls['email'].dirty || userDataForm.controls['email'].touched)">
+          <div *ngIf="userDataForm.controls['email'].errors?.['required']">L'email est requis.</div>
+          <div *ngIf="userDataForm.controls['email'].errors?.['email']">L'email doit être valide.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="inputContainer">
+        <!-- Input for Username -->
+        <svg viewBox="0 0 16 16" fill="#2e2e2e" height="16" width="16" xmlns="http://www.w3.org/2000/svg" class="inputIcon">
+          <path fill-rule="evenodd" d="M15.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+          <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>          </svg>
+        <input placeholder="Nom d'utilisateur : "  class="inputField" type="text" id="username" name="username" [(ngModel)]="user.username" required>
+        <div *ngIf="userDataForm.controls['username'].invalid && (userDataForm.controls['username'].dirty || userDataForm.controls['username'].touched)">
+          <div *ngIf="userDataForm.controls['username'].errors?.['required']">Le nom d'utilisateur est requis.</div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="inputContainer">
+        <!-- Input for Password -->
+        <svg viewBox="0 0 16 16" fill="#2e2e2e" height="16" width="16" xmlns="http://www.w3.org/2000/svg" class="inputIcon">
+          <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path>
+          </svg>
+          <input placeholder="mot de passe : " id="password" class="inputField" type="password" name="password" [(ngModel)]="user.password" required pattern="^(?=.*[a-zA-Z])(?=.*[0-9]).{6,15}$" minlength="6" maxlength="15">
+          <div *ngIf="userDataForm.controls['password'].invalid && (userDataForm.controls['password'].dirty || userDataForm.controls['password'].touched)">
+            <div *ngIf="userDataForm.controls['password'].errors?.['required']">Le mot de passe est requis.</div>
+            <div *ngIf="userDataForm.controls['password'].errors?.['pattern']">Le mot de passe doit être composé de lettres et de chiffres et avoir une longueur entre 6 et 15 caractères.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  <div class="row">
+    <div class="col">
+      <div class="inputContainer">
+        <!-- Input for Specialite -->
+     
+        <select id="specialite" name="specialite" [(ngModel)]="user.specialite" required>
+          <option value="" disabled selected>Select ta spécialité</option>
+          <option *ngFor="let spe of specialites" [value]="spe">{{ spe }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col">
+      <div class="inputContainer">
+        <!-- Input for Role -->
+       
+  <select id="role" name="role" [(ngModel)]="user.role"  required>
+    <option value="" disabled selected>Select ton profile</option>
+    <option value="candidat">Candidat</option>
+    <option value="employeur">Employeur</option>
+  </select>
+  <div *ngIf="userDataForm.controls['role'].invalid && (userDataForm.controls['role'].dirty || userDataForm.controls['role'].touched)">
+    <div *ngIf="userDataForm.controls['role'].errors?.['required']">Le rôle est requis.</div>
+  </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="inputContainer">
+        <!-- Input for Image -->
+        <label for="image">Image :</label>
+  <input type="file" (change)="select($event)" id="image" name="image" accept="image/*" [(ngModel)]="user.image">
+      </div>
+    </div>
+  </div>
+  <button id="button" type="submit" [disabled]="userDataForm.invalid">Envoyer</button>
+</form>
+<div class="image_container"><img src="https://img.freepik.com/free-vector/employees-cv-candidates-resume-corporate-workers-students-id-isolate-flat-design-element-job-applications-avatars-personal-information-concept-illustration_335657-1661.jpg?t=st=1715028618~exp=1715032218~hmac=bdbedb7db3fcd4fdc3d0786f1fc99631e9de9a43de4d0326186fb778b075e087&w=740" ></div>
+
+  </ng-template>
+
+
+  <footer>
+    <div class="footerContainer">
+        <div class="socialIcons">
+            <a href=""><i class="fa-brands fa-facebook"></i></a>
+            <a href=""><i class="fa-brands fa-instagram"></i></a>
+            <a href=""><i class="fa-brands fa-twitter"></i></a>
+            <a href=""><i class="fa-brands fa-google-plus"></i></a>
+            <a href=""><i class="fa-brands fa-youtube"></i></a>
+        </div>
+        <div class="footerNav">
+          <ul>
+            <li><a href="https://www.medianet.tn/fr/">Accueil</a></li>
+            <li><a href="https://www.medianet.tn/fr/">Actualités</a></li>
+            <li><a href="https://www.medianet.tn/fr/">À propos</a></li>
+            <li><a href="https://www.medianet.tn/fr/">Contactez-nous</a></li>
+            <li><a href="https://www.medianet.tn/fr/">Notre équipe</a></li>
+        </ul> 
+        </div>
+        
+    </div>
+    <div class="footerBottom">
+        <p>Copyright &copy;2024; Designée par <span class="designer">Eskander Belhaj amor</span></p>
+    </div>
+  </footer>
+

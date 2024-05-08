@@ -1,0 +1,195 @@
+<div *ngIf="isLoggedIn; else loggedOut">
+  <div class="image_container"><img src="https://img.freepik.com/free-vector/men-talking-concept-illustration_114360-8972.jpg?t=st=1715032419~exp=1715036019~hmac=09839471c853159c06941ebf95a8b7bc57c7eff5cdcd6b71f16280a7c15d7999&w=740" ></div>
+    <div class="table-wrapper">
+        <table class="fl-table">
+            <thead>
+                <tr>
+                    <th>Offre</th>
+                    
+                    <th>Discussion</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cand of cands">
+                    <td>{{ cand.titre }}</td>
+                    
+                    <td>
+                     
+                        <button id="btn-message" class="button-message" data-toggle="modal" data-target="#exampleModal" (click)="selectOffer(cand.idemployeur, cand.idcandidat, cand.idoffre, cand.prenom)">
+                            <div class="content-avatar">
+                                <div class="status-user"></div>
+                                <div class="avatar">
+                                    <svg class="user-img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12,12.5c-3.04,0-5.5,1.73-5.5,3.5s2.46,3.5,5.5,3.5,5.5-1.73,5.5-3.5-2.46-3.5-5.5-3.5Zm0-.5c1.66,0,3-1.34,3-3s-1.34-3-3-3-3,1.34-3,3,1.34,3,3,3Z"></path></svg>
+                                </div>
+                            </div>
+                            <div class="notice-content">
+                                <div class="username">Afficher Discussion</div>
+                                <div class="lable-message">Message<span class="number-message">+1</span></div>
+                                <div class="user-id">...</div>
+                            </div>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><strong>Message</strong></h5>
+                </div>
+                <div class="modal-body">
+                    <!-- Affichage des messages de la discussion -->
+                
+                    <div class="messages-container">
+                        <div *ngFor="let message of messages" class="message" [ngClass]="{'sent': message.isSent, 'received': !message.isSent}">
+                            {{ message.message }}
+                        </div>
+                        
+                    </div>
+                          
+               
+                      
+                      
+                      
+                      
+                      
+                    
+                    <!-- Formulaire d'envoi de message -->
+                    <form [formGroup]="discussionForm" (ngSubmit)="onSubmit()">
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea formControlName="message" id="message" class="form-control" rows="5"></textarea>
+                        </div>
+                        <button type="submit"><div class="svg-wrapper-1">
+                            <div class="svg-wrapper">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                width="24"
+                                height="24"
+                              >
+                                <path fill="none" d="M0 0h24v24H0z"></path>
+                                <path
+                                  fill="currentColor"
+                                  d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                                ></path>
+                              </svg>
+                            </div>
+                          </div>
+                          <span>Envoyer</span>
+                          </button>
+                    </form>
+                </div>
+                <div class="modal-footer"></div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+<ng-template #loggedOut>
+
+    <div class="main_wrapper">
+        <div class="main">
+          <div class="antenna">
+            <div class="antenna_shadow"></div>
+            <div class="a1"></div>
+            <div class="a1d"></div>
+            <div class="a2"></div>
+            <div class="a2d"></div>
+            <div class="a_base"></div>
+          </div>
+          <div class="tv">
+            <div class="cruve">
+              <svg
+                xml:space="preserve"
+                viewBox="0 0 189.929 189.929"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns="http://www.w3.org/2000/svg"
+                version="1.1"
+                class="curve_svg"
+              >
+                <path
+                  d="M70.343,70.343c-30.554,30.553-44.806,72.7-39.102,115.635l-29.738,3.951C-5.442,137.659,11.917,86.34,49.129,49.13
+              C86.34,11.918,137.664-5.445,189.928,1.502l-3.95,29.738C143.041,25.54,100.895,39.789,70.343,70.343z"
+                ></path>
+              </svg>
+            </div>
+            <div class="display_div">
+              <div class="screen_out">
+                <div class="screen_out1">
+                  <div class="screen">
+                    <span class="notfound_text"> NOT FOUND</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="lines">
+              <div class="line1"></div>
+              <div class="line2"></div>
+              <div class="line3"></div>
+            </div>
+            <div class="buttons_div">
+              <div class="b1"><div></div></div>
+              <div class="b2"></div>
+              <div class="speakers">
+                <div class="g1">
+                  <div class="g11"></div>
+                  <div class="g12"></div>
+                  <div class="g13"></div>
+                </div>
+                <div class="g"></div>
+                <div class="g"></div>
+              </div>
+            </div>
+          </div>
+          <div class="bottom">
+            <div class="base1"></div>
+            <div class="base2"></div>
+            <div class="base3"></div>
+          </div>
+        </div>
+        <div class="text_404">
+          <div class="text_4041">4</div>
+          <div class="text_4042">0</div>
+          <div class="text_4043">4</div>
+        </div>
+      </div>
+</ng-template>
+
+
+
+
+<footer>
+  <div class="footerContainer">
+      <div class="socialIcons">
+          <a href=""><i class="fa-brands fa-facebook"></i></a>
+          <a href=""><i class="fa-brands fa-instagram"></i></a>
+          <a href=""><i class="fa-brands fa-twitter"></i></a>
+          <a href=""><i class="fa-brands fa-google-plus"></i></a>
+          <a href=""><i class="fa-brands fa-youtube"></i></a>
+      </div>
+      <div class="footerNav">
+        <ul>
+          <li><a href="https://www.medianet.tn/fr/">Accueil</a></li>
+          <li><a href="https://www.medianet.tn/fr/">Actualités</a></li>
+          <li><a href="https://www.medianet.tn/fr/">À propos</a></li>
+          <li><a href="https://www.medianet.tn/fr/">Contactez-nous</a></li>
+          <li><a href="https://www.medianet.tn/fr/">Notre équipe</a></li>
+      </ul> 
+      </div>
+      
+  </div>
+  <div class="footerBottom">
+      <p>Copyright &copy;2024; Designée par <span class="designer">Eskander Belhaj amor</span></p>
+  </div>
+</footer>

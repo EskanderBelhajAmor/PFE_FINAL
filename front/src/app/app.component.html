@@ -1,0 +1,36 @@
+<header class="header">
+    <a href="" class="logo" style="font-family:'Lucida Handwriting' ">FIND JOB</a>
+    <input class="menu-btn" type="checkbox" id="menu-btn" />
+    <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+    <ul class="menu">
+      <li><a class="nav-link" [routerLink]="['/ajouter-offres' , _auth.getAuthorDataFromToken()._id ]"  *ngIf="(!_auth.isadmin()) && (!_auth.isCandidat())&& (_auth.isLoggedIn() == true)" style="font-family:'Lucida Handwriting' ">Ajouter des offres </a></li>
+      <li><a class="nav-link" [routerLink]="['/consulter-candidatures' , _auth.getAuthorDataFromToken()._id ]"  *ngIf="(!_auth.isadmin()) && (!_auth.isCandidat())&& (_auth.isLoggedIn() == true)" style="font-family:'Lucida Handwriting' ">Consulter les candidatures</a></li>
+      <li><a class="nav-link" [routerLink]="['/gerer-entretiens',  _auth.getAuthorDataFromToken()._id ]"  *ngIf="(!_auth.isadmin()) && (!_auth.isCandidat())&& (_auth.isLoggedIn() == true)" style="font-family:'Lucida Handwriting' ">Gérer les entretiens</a></li>
+      <li><a class="nav-link" [routerLink]="['/discussion',  _auth.getAuthorDataFromToken()._id  ]"  *ngIf="(!_auth.isadmin()) && (!_auth.isCandidat())&& (_auth.isLoggedIn() == true)" style="font-family:'Lucida Handwriting' ">Discussion</a></li>
+      <li><a class="nav-link" [routerLink]="['/creer-modifier-cv', _auth.getAuthorDataFromToken()._id]" *ngIf="(!_auth.isadmin()) && (_auth.isCandidat()) && (_auth.isLoggedIn() == true)" style="font-family:'Lucida Handwriting' ">Créer/Modifier CV</a></li>
+      <li><a class="nav-link" [routerLink]="['/consulter-offres-emploi', _auth.getAuthorDataFromToken()._id]" *ngIf="(!_auth.isadmin()) && (_auth.isCandidat()) && (_auth.isLoggedIn() == true)" style="font-family:'Lucida Handwriting' ">Consulter les offres d'emploi</a></li>
+      <li><a class="nav-link" [routerLink]="['/suivre-candidatures' , _auth.getAuthorDataFromToken()._id]" *ngIf="(!_auth.isadmin()) && (_auth.isCandidat()) && (_auth.isLoggedIn() == true)" style="font-family:'Lucida Handwriting' ">Suivre mes candidature</a></li>
+      <li><a class="nav-link" [routerLink]="['/discussioncandidat',  _auth.getAuthorDataFromToken()._id ]" *ngIf="(!_auth.isadmin()) && (_auth.isCandidat()) && (_auth.isLoggedIn() == true)" style="font-family:'Lucida Handwriting' ">Discussion</a></li>
+
+      <li><a class="nav-link" [routerLink]="['/admin']" *ngIf="(_auth.isadmin()) && (_auth.isLoggedIn() == true)" style="font-family:'Lucida Handwriting' ">Admin</a></li>
+      <li *ngIf="!_auth.isLoggedIn() == true"><a class="nav-link" [routerLink]="['/home']" style="font-family:'Lucida Handwriting' ">Accueil</a></li>
+      
+      <li class="nav-item @@contact" *ngIf="!_auth.isLoggedIn() == true">
+        <a class="nav-link" [routerLink]="['/register']" style="font-family:'Lucida Handwriting' ">s'inscrire</a>
+        </li>
+        <li class="nav-item @@contact" *ngIf="!_auth.isLoggedIn() == true">
+
+            <a class="nav-link" [routerLink]="['/login']" style="font-family:'Lucida Handwriting' ">se connecter</a>
+            </li>
+            <li class="nav-item @@contact" *ngIf="_auth.isLoggedIn() == true">
+                <a class="nav-link" (click)="logout()" style="font-family:'Lucida Handwriting' ">déconnecter</a>
+                </li>
+    </ul>
+
+  </header>
+  
+  <div class="content" >
+    <router-outlet></router-outlet>
+  </div>
+
+

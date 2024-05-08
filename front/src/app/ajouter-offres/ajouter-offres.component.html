@@ -1,0 +1,301 @@
+
+<div *ngIf="isLoggedIn; else loggedOut">
+  <div class="container">
+    <ul class="nav nav-tabs">
+      <li class="nav-item">
+        <a class="nav-link" (click)="selectTab('option1')" [class.active]="selectedTab === 'option1'">ajouter offre</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="selectTab('option2')" [class.active]="selectedTab === 'option2'">offre active</a>
+      </li>
+      <!-- Ajoutez d'autres onglets si nécessaire -->
+      <li class="nav-item">
+        <a class="nav-link" (click)="selectTab('option3')" [class.active]="selectedTab === 'option3'">offre cloturée</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane" [class.show.active]="selectedTab === 'option1'">
+        <!-- Contenu de l'option 1 -->
+        <div class="container">
+            <h2>Ajouter une offre</h2>
+            <form [formGroup]="offreForm" (ngSubmit)="onSubmit()">
+              <div class="mb-3">
+                <label for="titre" class="form-label">Titre</label>
+                <input type="text" class="form-control large-font" id="titre" formControlName="titre">
+              </div>
+              <div class="mb-3">
+                <label for="desc_entreprise" class="form-label">Description de l'entreprise</label>
+                <textarea class="form-control large-font" id="desc_entreprise" formControlName="desc_entreprise"></textarea>
+              </div>
+              <div class="mb-3">
+                <label for="desc_poste" class="form-label">Description du poste</label>
+                <textarea class="form-control large-font" id="desc_poste" formControlName="desc_poste"></textarea>
+              </div>
+          
+                <input type="text" class="form-control large-font" id="nombreCandidature" formControlName="nombreCandidature" hidden>
+         
+              
+              <div class="mb-3">
+                <label for="qualification" class="form-label">Qualification</label>
+                <input type="text" class="form-control large-font" id="qualification" formControlName="qualification">
+              </div>
+              <div class="mb-3">
+                <label for="enligneouadist" class="form-label">En ligne ou sur site</label>
+                <select class="form-select large-font" id="enligneouadist" formControlName="enligneouadist">
+                  <option value="en ligne">En ligne</option>
+                  <option value="sur site">Sur site</option>
+                  <option value="hybride">Hybride</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="datecloture" class="form-label">Date de clôture</label>
+                <input type="date" class="form-control large-font" id="datecloture" formControlName="datecloture">
+              </div>
+              <div class="mb-3">
+                <label for="emplacement" class="form-label">Emplacement</label>
+                <select class="form-select large-font" id="emplacement" formControlName="emplacement">
+                  <option value="Ariana">Ariana</option>
+                  <option value="Beja">Béja</option>
+                  <option value="Ben Arous">Ben Arous</option>
+                  <option value="Bizerte">Bizerte</option>
+                  <option value="Gabes">Gabès</option>
+                  <option value="Gafsa">Gafsa</option>
+                  <option value="Jendouba">Jendouba</option>
+                  <option value="Kairouan">Kairouan</option>
+                  <option value="Kasserine">Kasserine</option>
+                  <option value="Kebili">Kébili</option>
+                  <option value="Kef">Le Kef</option>
+                  <option value="Mahdia">Mahdia</option>
+                  <option value="Manouba">La Manouba</option>
+                  <option value="Medenine">Médenine</option>
+                  <option value="Monastir">Monastir</option>
+                  <option value="Nabeul">Nabeul</option>
+                  <option value="Sfax">Sfax</option>
+                  <option value="Sidi Bouzid">Sidi Bouzid</option>
+                  <option value="Siliana">Siliana</option>
+                  <option value="Sousse">Sousse</option>
+                  <option value="Tataouine">Tataouine</option>
+                  <option value="Tozeur">Tozeur</option>
+                  <option value="Tunis">Tunis</option>
+                  <option value="Zaghouan">Zaghouan</option>
+                </select>
+              </div>
+              
+              <div class="mb-3">
+         
+                <input type="text" class="form-control large-font" id="idemployeur" formControlName="idemployeur" hidden>
+              </div>
+              <div class="mb-3">
+                <label for="specialite" class="form-label">Specialite</label>
+                <input type="text" class="form-control large-font" id="specialite" formControlName="specialite" >
+              </div>
+              
+              
+              <button type="submit" >Ajouter</button>
+            </form>
+          </div>
+          
+        <!-- Ajoutez le contenu de l'option 1 ici -->
+      </div>
+      <div class="tab-pane" [class.show.active]="selectedTab === 'option2'">
+        <!-- Contenu de l'option 2 -->
+        <div class="container">
+            <h2>Liste des offres actives</h2>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Titre</th>
+                  <th scope="col">Description Entreprise</th>
+                  <th scope="col">Description Poste</th>
+                  <th scope="col">Qualification</th>
+                  <th scope="col">En Ligne ou à Distance</th>
+                  <th scope="col">Date de Clôture</th>
+                  <th scope="col">Emplacement</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let offre of offres">
+                  <td>{{ offre.titre }}</td>
+                  <td>{{ offre.desc_entreprise }}</td>
+                  <td>{{ offre.desc_poste }}</td>
+                  <td>{{ offre.qualification }}</td>
+                  <td>{{ offre.enligneouadist }}</td>
+                  <td>{{ offre.datecloture }}</td>
+                  <td>{{ offre.emplacement }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+        <!-- Ajoutez le contenu de l'option 2 ici -->
+
+  
+      </div>
+
+
+
+
+
+      <div class="tab-pane" [class.show.active]="selectedTab === 'option3'">
+        <!-- Contenu de l'option 3 -->
+        <div class="container">
+            <h2>Liste des offres cloturées</h2>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Titre</th>
+                  
+                  <th scope="col">Description Poste</th>
+                  <th scope="col">Qualification</th>
+                  <th scope="col">En Ligne ou à Distance</th>
+                  <th scope="col">Date de Clôture</th>
+                  <th scope="col">Emplacement</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let offre of offresnotactive">
+                  <td>{{ offre.titre }}</td>
+                 
+                  <td>{{ offre.desc_poste }}</td>
+                  <td>{{ offre.qualification }}</td>
+                  <td>{{ offre.enligneouadist }}</td>
+                  <td>{{ offre.datecloture }}</td>
+                  <td>{{ offre.emplacement }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        <!-- Ajoutez le contenu de l'option 2 ici -->
+      </div>
+      <!-- Ajoutez d'autres onglets avec leur contenu si nécessaire -->
+    </div>
+  </div>
+
+
+</div>
+
+
+<div class="image_container"><img src="https://img.freepik.com/free-vector/tiny-people-searching-business-opportunities_74855-19928.jpg?t=st=1715030030~exp=1715033630~hmac=200d01451320e6ea1e7db1b2d3d2fd47f062ae9345361a3bb4442062f169b66b&w=1060" ></div>
+
+   
+
+     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <ng-template #loggedOut>
+
+      <div class="main_wrapper">
+          <div class="main">
+            <div class="antenna">
+              <div class="antenna_shadow"></div>
+              <div class="a1"></div>
+              <div class="a1d"></div>
+              <div class="a2"></div>
+              <div class="a2d"></div>
+              <div class="a_base"></div>
+            </div>
+            <div class="tv">
+              <div class="cruve">
+                <svg
+                  xml:space="preserve"
+                  viewBox="0 0 189.929 189.929"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  xmlns="http://www.w3.org/2000/svg"
+                  version="1.1"
+                  class="curve_svg"
+                >
+                  <path
+                    d="M70.343,70.343c-30.554,30.553-44.806,72.7-39.102,115.635l-29.738,3.951C-5.442,137.659,11.917,86.34,49.129,49.13
+                C86.34,11.918,137.664-5.445,189.928,1.502l-3.95,29.738C143.041,25.54,100.895,39.789,70.343,70.343z"
+                  ></path>
+                </svg>
+              </div>
+              <div class="display_div">
+                <div class="screen_out">
+                  <div class="screen_out1">
+                    <div class="screen">
+                      <span class="notfound_text"> NOT FOUND</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="lines">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+              </div>
+              <div class="buttons_div">
+                <div class="b1"><div></div></div>
+                <div class="b2"></div>
+                <div class="speakers">
+                  <div class="g1">
+                    <div class="g11"></div>
+                    <div class="g12"></div>
+                    <div class="g13"></div>
+                  </div>
+                  <div class="g"></div>
+                  <div class="g"></div>
+                </div>
+              </div>
+            </div>
+            <div class="bottom">
+              <div class="base1"></div>
+              <div class="base2"></div>
+              <div class="base3"></div>
+            </div>
+          </div>
+          <div class="text_404">
+            <div class="text_4041">4</div>
+            <div class="text_4042">0</div>
+            <div class="text_4043">4</div>
+          </div>
+        </div>
+    </ng-template>
+    
+
+
+    <footer>
+      <div class="footerContainer">
+          <div class="socialIcons">
+              <a href=""><i class="fa-brands fa-facebook"></i></a>
+              <a href=""><i class="fa-brands fa-instagram"></i></a>
+              <a href=""><i class="fa-brands fa-twitter"></i></a>
+              <a href=""><i class="fa-brands fa-google-plus"></i></a>
+              <a href=""><i class="fa-brands fa-youtube"></i></a>
+          </div>
+          <div class="footerNav">
+            <ul>
+              <li><a href="https://www.medianet.tn/fr/">Accueil</a></li>
+              <li><a href="https://www.medianet.tn/fr/">Actualités</a></li>
+              <li><a href="https://www.medianet.tn/fr/">À propos</a></li>
+              <li><a href="https://www.medianet.tn/fr/">Contactez-nous</a></li>
+              <li><a href="https://www.medianet.tn/fr/">Notre équipe</a></li>
+          </ul> 
+          </div>
+          
+      </div>
+      <div class="footerBottom">
+          <p>Copyright &copy;2024; Designée par <span class="designer">Eskander Belhaj amor</span></p>
+      </div>
+    </footer>
